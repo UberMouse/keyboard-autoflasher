@@ -19,7 +19,7 @@ export async function downloadAndExtractLatestFirmwareRelease() {
   
   const artifact = await got(artifactUrl, { followRedirect: true })
   
-  await writeFile("moonlander_firmware.bin", artifact.body)
+  await writeFile("moonlander_firmware.bin", artifact.rawBody)
 }
 
 async function retrieveLatestReleaseArtifactUrl() {
@@ -30,10 +30,7 @@ async function retrieveLatestReleaseArtifactUrl() {
     per_page: 1
   });
   const latestRelease = releases.data[0];
-  const releaseArtifacts = await octo.rest.repos.listReleaseAssets({
-    owner: OWNER,
-    repo: REPO,
-    release_id: latestRelease.id
-  });
-  return releaseArtifacts.data.find((a) => a.name === "moonlander_firmware.bin")?.browser_download_url;
+  const firmwareAsset = latestRelease.assets.find((a) => a.name === "moonlander_firmware.bin");
+  
+  return firmwareAsset?.browser_download_url;
 }
