@@ -26,7 +26,7 @@ async function retrieveLatestReleaseArtifactUrl() {
     per_page: 1
   });
   const latestRelease = releases.data[0];
-  const firmwareAsset = latestRelease.assets.find((a) => a.name === "moonlander_firmware.bin");
+  const firmwareAsset = latestRelease.assets.find((a: any) => a.name === "moonlander_firmware.bin");
   
   return firmwareAsset?.browser_download_url;
 }
