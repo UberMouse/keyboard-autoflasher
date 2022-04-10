@@ -15,7 +15,7 @@ async function checkIfWorkflowAlreadyRunning() {
   
   const run = await getLatestWorkflowRun();
   
-  const running = run.status === "running" || run.status === "queued";
+  const running = run.status === "in_progress" || run.status === "queued";
   console.log("Latest workflow status is", run.status);
   console.log(running ? "Already running, not starting new one" : "Not running, starting new run");
   
