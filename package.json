@@ -7,7 +7,7 @@
   "scripts": {
     "build": "heft build --clean",
     "start": "node lib/index.js",
-    "package": "pkg . --targets node14-win --out-dir dist"
+    "package": "pkg . --targets node20-win --out-dir dist"
   },
   "repository": {
     "type": "git",
