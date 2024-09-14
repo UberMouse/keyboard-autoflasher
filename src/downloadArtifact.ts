@@ -14,8 +14,8 @@ export async function downloadAndExtractLatestFirmwareRelease() {
   console.log("Downloading artifact");
   const artifact = await got(artifactUrl, { followRedirect: true })
   
-  await writeFile("zsa_moonlander_firmware.bin", artifact.rawBody)
-  console.log("Artifact downloaded to zsa_moonlander_firmware.bin");
+  await writeFile("moonlander_firmware.bin", artifact.rawBody)
+  console.log("Artifact downloaded to moonlander_firmware.bin");
 }
 
 async function retrieveLatestReleaseArtifactUrl() {
@@ -26,7 +26,7 @@ async function retrieveLatestReleaseArtifactUrl() {
     per_page: 1
   });
   const latestRelease = releases.data[0];
-  const firmwareAsset = latestRelease.assets.find((a: any) => a.name === "zsa_moonlander_firmware.bin");
+  const firmwareAsset = latestRelease.assets.find((a: any) => a.name === "moonlander_firmware.bin");
   
   return firmwareAsset?.browser_download_url;
 }
